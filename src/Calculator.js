@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Loan from './Loan'
 import './Calculator.css'
 class Calculator extends Component {
 state= {
@@ -7,16 +6,28 @@ state= {
     term: 0,
     rate: 0
 }
-calculatorClickHandler(e) {
+calculatorClickHandler= e => {
 e.preventDefault()
     console.log(e.target)
 }
 
-onChange(e, result){
-    console.log(e.target.value," e should be a number not undefined")
+onChange = e => {
+    // console.log(e.target.value,"1 e should be a number not undefined")
+    // console.log(e.target.name)
     let value = e.target.value
+    let loanAmount = this.state.loanAmount
+    let name = e.target.name
+    if (name === 'loanAmount'){
+        this.setState({loanAmount: value})
+    }
     
-    this.setState({loanAmount: value})
+    if(name === "Term"){
+        this.setState({term: value})
+    }
+    if(name === "Rate"){
+        this.setState({rate: value})
+    }
+
 }
     render() {
         return (
