@@ -78,26 +78,20 @@
 	border-width: 1px 1px 3px;
 	margin-bottom: 10px;
 }
-.card input[type="submit"]:hover,
-.card input[type="button"]:hover
-{
-	background: #109177;
+
+
+.card button{
+    position: relative;
+	display: block;
+	padding: 19px 39px 18px 39px;
+	color: #FFF;
+	margin: 0 auto;
+	background: #1abc9c;
+	font-size: 18px;
+	text-align: center;
+	font-style: normal;
+	width: 100%;
+	border: 1px solid #16a085;
+	border-width: 1px 1px 3px;
+	margin-bottom: 10px;
 }
-
-/* body{
-    list-style-type: none
-} */
-
-/* .card {left: 25%;
-    top: 20%;
-    position: fixed;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    transition: 0.3s;
-    width: 50%;
-    height: 50%;
-    border-radius: 5px; 
-text-align: center;  }
-  
-  .card:hover {
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2); */
-  
