@@ -7,7 +7,9 @@ state= {
     loanAmount: 0,
     term: 0,
     rate: 0,
-    payment: 0 
+    payment: 0 ,
+    
+    showComponent: false
 }
 
 calculatorClickHandler= e => {
@@ -20,7 +22,8 @@ let loanAmount = this.state.loanAmount
   const loan = new Loan (loanAmount, term, rate) 
     let payment = loan.monthlyPayment()
 
-this.setState({payment: payment})
+this.setState({payment: payment,
+showComponent: true})
 
 return (
 <Payment payment={payment}/>
@@ -50,7 +53,8 @@ Term<input type="text" name="term" onChange={this.onChange} />
 </fieldset>
 <button type='submit'onClick={(e) =>this.calculatorClickHandler(e)}>Show Payment Info</button>
 </form>
-
+{this.state.showComponent ? <Payment payment={this.state.payment}/> :
+null}
 </div>
 
 

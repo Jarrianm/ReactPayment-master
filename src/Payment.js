@@ -3,7 +3,7 @@ import './Payment.css'
 
 class Payment extends Component {
     render() {
-        console.log('am i renderin')
+        console.log(this.props)
         return (
             <div className='payment'>
                 {this.props.payment}
