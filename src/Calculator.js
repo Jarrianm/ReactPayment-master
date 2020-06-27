@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './Calculator.css'
 import Loan from "./Loan"
+import Payment from './Payment'
 class Calculator extends Component {
 state= {
     loanAmount: 0,
@@ -20,18 +21,20 @@ let loanAmount = this.state.loanAmount
     let payment = loan.monthlyPayment()
 
 this.setState({payment: payment})
-console.log(payment)
 
+return (
+<Payment payment={payment}/>
+)
 
 }
 
 onChange = e => {
     // console.log(e.target.value,"1 e should be a number not undefined")
     // console.log(e.target.name)
-    let value = e.target.value
+    
     
     let name = e.target.name
-   this.setState({[e.target.name]: e.target.value})
+   this.setState({[name]: e.target.value})
 
 }
     render() {
@@ -49,13 +52,6 @@ Term<input type="text" name="term" onChange={this.onChange} />
 </form>
 
 </div>
-
-
-
-
-
-
-
 
 
 
