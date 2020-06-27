@@ -1,9 +1,9 @@
 class Loan {
-    constructor() {
+    constructor(loanAmount, term, rate) {
        
-        this.loanAmount = 0;
-        this.term = 30;
-        this.rate = 3.5;
+        this.loanAmount = loanAmount;
+        this.term = term;
+        this.rate = rate;
     }
 
 
