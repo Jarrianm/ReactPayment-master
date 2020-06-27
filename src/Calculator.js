@@ -20,17 +20,15 @@ class Calculator extends Component {
 
     const loan = new Loan(loanAmount, term, rate);
     let payment = loan.monthlyPayment();
-    
-    
-	payment += '';
-	payment = payment.replace(',', ''); 
-        let x = payment.split('.');
-        let x1 = x[0];
-       let  x2 = x.length > 1 ? '.' + x[1] : '';
-        let rgx = /(\d+)(\d{3})/;
-        while (rgx.test(x1))
-            x1 = x1.replace(rgx, '$1' + ',' + '$2');
-		payment =  x1 + x2;
+
+    payment += "";
+    payment = payment.replace(",", "");
+    let x = payment.split(".");
+    let x1 = x[0];
+    let x2 = x.length > 1 ? "." + x[1] : "";
+    let rgx = /(\d+)(\d{3})/;
+    while (rgx.test(x1)) x1 = x1.replace(rgx, "$1" + "," + "$2");
+    payment = x1 + x2;
 
     this.setState({ payment: payment, showComponent: true });
   };
