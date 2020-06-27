@@ -4,6 +4,7 @@ class Loan {
         this.loanAmount = loanAmount;
         this.term = term;
         this.rate = rate;
+        this.termInMonths = this.term * 12
     }
 
 

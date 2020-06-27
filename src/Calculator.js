@@ -1,15 +1,28 @@
 import React, { Component } from 'react';
 import './Calculator.css'
+import Loan from "./Loan"
 class Calculator extends Component {
 state= {
     loanAmount: 0,
     term: 0,
-    rate: 0
+    rate: 0,
+    payment: 0 
 }
+
 calculatorClickHandler= e => {
-e.preventDefault()
-    console.log(e.target)
-    this.props.clickHandler(this.state)
+  
+    e.preventDefault()
+let loanAmount = this.state.loanAmount
+  let term = this.state.term
+  let rate = this.state.rate
+  
+  const loan = new Loan (loanAmount, term, rate) 
+    let payment = loan.monthlyPayment()
+
+this.setState({payment: payment})
+console.log(payment)
+
+
 }
 
 onChange = e => {
@@ -34,6 +47,7 @@ Term<input type="text" name="term" onChange={this.onChange} />
 </fieldset>
 <button type='submit'onClick={(e) =>this.calculatorClickHandler(e)}>Show Payment Info</button>
 </form>
+
 </div>
 
 
