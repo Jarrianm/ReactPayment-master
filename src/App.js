@@ -4,21 +4,20 @@ import './App.css'
 import Loan from "./Loan"
 class App extends Component {
   
-
+state = {
+  payment: []
+}
 
   clickHandler = e =>{
   let loanAmount = e.loanAmount
   let term = e.term
   let rate = e.rate
   
-  let loan = new Loan (loanAmount, term, rate) 
-    this.loanAmount = loanAmount;
-    this.term = term;
-    this.rate = rate;
-    
-    
+  const loan = new Loan (loanAmount, term, rate) 
+    let payment = loan.monthlyPayment(loanAmount, term, rate)
+console.log(loanAmount, term, rate, payment)
 
-
+this.setState({payment: payment})
   
 }
 
