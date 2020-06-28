@@ -8,12 +8,12 @@ class Calculator extends Component {
     term: 0,
     rate: 0,
     payment: 0,
-
     showComponent: false,
   };
 
   calculatorClickHandler = (e) => {
     e.preventDefault();
+    // console.log(this.state)
     let loanAmount = this.state.loanAmount;
     let term = this.state.term;
     let rate = this.state.rate;
@@ -36,10 +36,27 @@ class Calculator extends Component {
   onChange = (e) => {
     // console.log(e.target.value,"1 e should be a number not undefined")
     // console.log(e.target.name)
-
+    // console.log(this.state)
     let name = e.target.name;
-    this.setState({ [name]: e.target.value });
+
+    let loanAmount = this.state.loanAmount;
+    let term = this.state.term;
+    let rate = this.state.rate;
+    const loan = new Loan(loanAmount, term, rate);
+    let payment = loan.monthlyPayment();
+    payment += "";
+    payment = payment.replace(",", "");
+    let x = payment.split(".");
+    let x1 = x[0];
+    let x2 = x.length > 1 ? "." + x[1] : "";
+    let rgx = /(\d+)(\d{3})/;
+    while (rgx.test(x1)) x1 = x1.replace(rgx, "$1" + "," + "$2");
+    payment = x1 + x2;
+
+    this.setState({ [name]: e.target.value, payment: payment });
+    console.log(this.state);
   };
+
   render() {
     return (
       <div className="card">
