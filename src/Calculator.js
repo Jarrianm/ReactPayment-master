@@ -34,15 +34,13 @@ class Calculator extends Component {
   };
 
   onChange = (e) => {
-    // console.log(e.target.value,"1 e should be a number not undefined")
-    // console.log(e.target.name)
-    // console.log(this.state)
     let name = e.target.name;
-
     let loanAmount = this.state.loanAmount;
     let term = this.state.term;
     let rate = this.state.rate;
+    
     const loan = new Loan(loanAmount, term, rate);
+    
     let payment = loan.monthlyPayment();
     payment += "";
     payment = payment.replace(",", "");
@@ -53,9 +51,10 @@ class Calculator extends Component {
     while (rgx.test(x1)) x1 = x1.replace(rgx, "$1" + "," + "$2");
     payment = x1 + x2;
 
-    this.setState({ [name]: e.target.value, payment: payment });
-    console.log(this.state);
+    this.setState({ [name]: e.target.value, payment: payment }, () => console.log(this.state.payment))
   };
+
+
 
   render() {
     return (
