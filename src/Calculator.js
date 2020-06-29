@@ -9,10 +9,13 @@ class Calculator extends Component {
     rate: 0,
     payment: 0,
     showComponent: false,
+    change: false,
+    updatedPayment: 0,
   };
 
   calculatorClickHandler = (e) => {
-    e.preventDefault();
+    e.preventDefault()
+    console.log(e);
     // console.log(this.state)
     let loanAmount = this.state.loanAmount;
     let term = this.state.term;
@@ -20,7 +23,11 @@ class Calculator extends Component {
 
     const loan = new Loan(loanAmount, term, rate);
     let payment = loan.monthlyPayment();
+    console.log(payment);
+    this.setState({ showComponent: true }, this.addCommas(payment));
+  };
 
+  addCommas = (payment) => {
     payment += "";
     payment = payment.replace(",", "");
     let x = payment.split(".");
@@ -29,8 +36,8 @@ class Calculator extends Component {
     let rgx = /(\d+)(\d{3})/;
     while (rgx.test(x1)) x1 = x1.replace(rgx, "$1" + "," + "$2");
     payment = x1 + x2;
-
-    this.setState({ payment: payment, showComponent: true });
+    console.log(payment);
+    this.setState({ payment: payment, updatedPayment: payment });
   };
 
   onChange = (e) => {
@@ -38,28 +45,22 @@ class Calculator extends Component {
     let loanAmount = this.state.loanAmount;
     let term = this.state.term;
     let rate = this.state.rate;
-    
+
     const loan = new Loan(loanAmount, term, rate);
-    
+
     let payment = loan.monthlyPayment();
-    payment += "";
-    payment = payment.replace(",", "");
-    let x = payment.split(".");
-    let x1 = x[0];
-    let x2 = x.length > 1 ? "." + x[1] : "";
-    let rgx = /(\d+)(\d{3})/;
-    while (rgx.test(x1)) x1 = x1.replace(rgx, "$1" + "," + "$2");
-    payment = x1 + x2;
+    console.log(payment);
 
-    this.setState({ [name]: e.target.value, payment: payment }, () => console.log(this.state.payment))
+    this.setState(
+      { [name]: e.target.value, change: true },
+      this.addCommas(payment)
+    );
   };
-
-
 
   render() {
     return (
       <div className="card">
-        <form>
+        <form onSubmit={this.submitHandler}>
           <fieldset>
             <legend>
               <span className="number"></span> Let us do the work for you!
@@ -76,7 +77,11 @@ class Calculator extends Component {
           </button>
         </form>
         {this.state.showComponent ? (
-          <Payment payment={this.state.payment} />
+          <Payment
+            payment={this.state.payment}
+            change={this.state.change}
+            updatedPayment={this.state.updatedPayment}
+          />
         ) : null}
       </div>
     );
